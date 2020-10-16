@@ -27,6 +27,6 @@ public class Hooks {
         }catch (InterruptedException e){
             e.printStackTrace();
         }
-      //  Driver.quitDriver();
+        Driver.quitDriver();
     }
 }

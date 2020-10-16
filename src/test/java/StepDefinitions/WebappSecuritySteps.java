@@ -5,6 +5,8 @@ package StepDefinitions;
 
 import Pages.PayContent;
 import Utilities.Driver;
+import cucumber.api.PendingException;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -30,11 +32,42 @@ public class WebappSecuritySteps {
         payContent.findElementAndSendKeysFunction("userLogin","username");
         payContent.findElementAndSendKeysFunction("userPassword","password");
         payContent.findElementAndClickFunction("submitButton");
-        driver.switchTo().alert().accept();
+      //  driver.switchTo().alert().accept();
     }
 
     @Then("^User should login successfully$")
     public void userShouldLoginSuccessfully() {
         driver.switchTo().alert().accept();
+    }
+
+    @When("^Click Paybill and newPayee$")
+    public void clickPaybillAndNewPayee() {
+        payContent.findElementAndClickFunction("payBill");
+        payContent.findElementAndClickFunction("addNewPayee");
+    }
+
+    @And("^Send \"([^\"]*)\"to Paye name$")
+    public void sendToPayeName(String arg0) {
+       payContent.findElementAndSendKeysFunction("newPayeeName",arg0);
+    }
+
+    @Then("^Send \"([^\"]*)\"to Payee Address$")
+    public void sendToPayeeAddress(String arg0){
+        payContent.findElementAndSendKeysFunction("payAddress",arg0);
+    }
+
+    @Then("^Send \"([^\"]*)\"to Account$")
+    public void sendToAccount(String arg0) {
+        payContent.findElementAndSendKeysFunction("account",arg0);
+    }
+
+    @Then("^Send \"([^\"]*)\"to Payee Details$")
+    public void sendToPayeeDetails(String arg0){
+        payContent.findElementAndSendKeysFunction("payeDetailes",arg0);
+    }
+
+    @And("^Save to form$")
+    public void saveToForm() {
+        payContent.findElementAndClickFunction("payeAddButton");
     }
 }
