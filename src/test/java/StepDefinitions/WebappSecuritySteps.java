@@ -107,7 +107,7 @@ public class WebappSecuritySteps {
             payContent.findElementAndClickFunction("pcDollarFalse");
         }
         payContent.findElementAndClickFunction("pcCalculateButton");
-        payContent.beklet(2000);
+        payContent.beklet(1000);
         payContent.findElementAndClickFunction("puschaseButton");
 
     }
