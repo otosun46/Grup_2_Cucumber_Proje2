@@ -91,6 +91,7 @@ public class _Parent {
     }
 
     public void selectOptionByString(List<WebElement> elementList, String str) {
+        System.out.println("WebElementList size= "+elementList.size());
         str = str.trim();
         if (girdiSayiMi(str)) {
             clickFunction(selectOptions(elementList, Integer.parseInt(str)));
@@ -102,7 +103,7 @@ public class _Parent {
     public WebElement selectOptions(List<WebElement> elementList, String value) {
         WebElement elementSelected = null;
         for (WebElement element : elementList) {
-            if (element.getText().equalsIgnoreCase(value)) {
+            if (element.getText().toLowerCase().contains(value.toLowerCase())) {
                 elementSelected = element;
                 break;
             }

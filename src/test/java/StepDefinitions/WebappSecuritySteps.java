@@ -5,6 +5,7 @@ package StepDefinitions;
 
 import Pages.PayContent;
 import Utilities.Driver;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -82,4 +83,34 @@ public class WebappSecuritySteps {
         Assert.assertFalse(payContent.success.isDisplayed());
 
     }
+
+    @When("^Click Paybill and purchase foreing currency$")
+    public void clickPaybillAndPurchaseForeingCurrency() {
+        payContent.findElementAndClickFunction("payBill");
+        payContent.findElementAndClickFunction("purchaseForeignCurrency");
+    }
+
+    @And("^Select currency \"([^\"]*)\" and enter amount as \"([^\"]*)\"$")
+    public void selectCurrencyAndEnterAmountAs(String arg0, String arg1){
+        payContent.findElementAndClickFunction("pcCurrency");
+        payContent.findElementAndSelectOption("option",arg0);
+        payContent.findElementAndSendKeysFunction("pcAmount",arg1);
+
+    }
+
+    @Then("^Choose whether the currency will be \"([^\"]*)\" and calculated$")
+    public void chooseWhetherTheCurrencyWillBeAndCalculated(String arg0){
+        if (arg0.equalsIgnoreCase("dollar")){
+            payContent.findElementAndClickFunction("pcDollarTrue");
+        }
+        else {
+            payContent.findElementAndClickFunction("pcDollarFalse");
+        }
+        payContent.findElementAndClickFunction("pcCalculateButton");
+        payContent.beklet(2000);
+        payContent.findElementAndClickFunction("puschaseButton");
+
+    }
+
+
 }
