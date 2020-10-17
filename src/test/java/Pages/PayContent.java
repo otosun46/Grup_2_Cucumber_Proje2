@@ -41,6 +41,9 @@ public class PayContent extends _Parent{
     @FindBy(xpath = "//input[@id='add_new_payee']")
     private WebElement payeAddButton;
 
+    @FindBy(css = "div[id=alert_container]>div")
+    public WebElement success;
+
 
     @FindAll({
             @FindBy(css = "mat-option[role='option']")
@@ -99,5 +102,12 @@ public class PayContent extends _Parent{
         }
         selectOptionByString(myList, secenek);
     }
-
+    public void findElementAndVerifyContainsText(String elementName, String msg) {
+        switch (elementName) {
+            case "success":
+                myElement = success;
+                break;
+        }
+        verifyElementContainsText(myElement, msg);
+    }
 }

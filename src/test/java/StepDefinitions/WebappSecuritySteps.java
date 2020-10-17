@@ -5,12 +5,12 @@ package StepDefinitions;
 
 import Pages.PayContent;
 import Utilities.Driver;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 
 import java.util.concurrent.TimeUnit;
 
@@ -69,5 +69,17 @@ public class WebappSecuritySteps {
     @And("^Save to form$")
     public void saveToForm() {
         payContent.findElementAndClickFunction("payeAddButton");
+    }
+
+    @Then("^Success message shuld be diplayed$")
+    public void successMessageShuldBeDiplayed() {
+
+    payContent.findElementAndVerifyContainsText("success","successfully");
+    }
+
+    @Then("^Verify success message not displayed$")
+    public void verifySuccessMessageNotDisplayed() {
+        Assert.assertFalse(payContent.success.isDisplayed());
+
     }
 }
